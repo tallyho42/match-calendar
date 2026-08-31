@@ -4,7 +4,7 @@
 download_logos.py  (v4)
 =======================
 Stahne loga fotbalovych klubu do ./img/ jako <zkratka>.png, presne jak je
-ocekava fotbalovy-rozpis.html.  Vystup je VZDY validni PNG.
+ocekava index.html.  Vystup je VZDY validni PNG.
 
 Co je nove proti v3 (a proc v3 padala):
   * v3 ukladala i JPEG/SVG pod priponou .png (resp. jako .svg) -> web ani
@@ -572,7 +572,7 @@ def valid_png(abbr):
 def expected_keys():
     """Autorita je HTML; fallback na ARTICLES, kdyby HTML nebylo po ruce."""
     try:
-        h = open("fotbalovy-rozpis.html", encoding="utf-8").read()
+        h = open("index.html", encoding="utf-8").read()
     except OSError:
         return sorted(ARTICLES)
     keys = set(m.lower() for m in

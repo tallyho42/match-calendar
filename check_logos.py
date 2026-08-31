@@ -4,7 +4,7 @@
 platny img/<zkratka>.png (nenulovy, s PNG magickou hlavickou)."""
 import os, re, sys
 
-HTML = "fotbalovy-rozpis.html"
+HTML = "index.html"
 IMG_DIR = "img"
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 
