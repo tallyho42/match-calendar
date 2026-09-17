@@ -76,6 +76,35 @@
     font-size: 0.76rem; font-weight: 600; letter-spacing: 0.05em;
     margin-top: 6px;
   }
+  .hero-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+  .updated-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: transparent; border: 1px solid transparent;
+    color: var(--muted);
+    padding: 0 15px;
+    font-size: 0.64rem; font-weight: 500; letter-spacing: 0.03em;
+  }
+
+  /* ============ UPDATE STATUS ============ */
+  .update-status {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: var(--glass); border: 1px solid var(--line);
+    border-radius: 16px; padding: 12px 15px; margin: 16px 0 0;
+    backdrop-filter: blur(8px);
+  }
+  .us-dot {
+    width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;
+    background: var(--muted);
+  }
+  .update-status.ok { border-color: rgba(200,241,53,0.35); }
+  .update-status.ok .us-dot { background: var(--lime); box-shadow: 0 0 8px rgba(200,241,53,0.55); }
+  .update-status.ok .us-text { color: var(--lime); }
+  .update-status.warn { border-color: rgba(255,216,77,0.4); background: rgba(255,216,77,0.07); }
+  .update-status.warn .us-dot { background: var(--gold); box-shadow: 0 0 8px rgba(255,216,77,0.55); }
+  .update-status.warn .us-text { color: var(--gold); }
+  .us-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .us-text { font-size: 0.8rem; font-weight: 700; color: var(--ink); }
+  .us-detail { font-size: 0.72rem; color: var(--muted); margin: 0; line-height: 1.45; }
 
   /* ============ TEAM SWITCHER ============ */
   .teams-nav {
@@ -352,14 +381,31 @@
         <h1>MATCHDAY</h1>
         <p class="season">Sezóna 2026/27 · Barça × Real × Arsenal</p>
       </div>
-      <div class="today-pill" id="todayBadge">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="4.5" width="18" height="16" rx="2.5"></rect>
-          <line x1="3" y1="9.5" x2="21" y2="9.5"></line>
-          <line x1="7.5" y1="2.5" x2="7.5" y2="6.5"></line>
-          <line x1="16.5" y1="2.5" x2="16.5" y2="6.5"></line>
-        </svg>
-        <span id="todayBadgeDate">–</span>
+      <div class="hero-badges">
+        <div class="today-pill" id="todayBadge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4.5" width="18" height="16" rx="2.5"></rect>
+            <line x1="3" y1="9.5" x2="21" y2="9.5"></line>
+            <line x1="7.5" y1="2.5" x2="7.5" y2="6.5"></line>
+            <line x1="16.5" y1="2.5" x2="16.5" y2="6.5"></line>
+          </svg>
+          <span id="todayBadgeDate">–</span>
+        </div>
+        <div class="updated-pill" id="updatedPill" data-updated="2026-09-17T19:39:00">
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span>Aktualizováno 17.09.2026 · 19:39</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="update-status" id="updateStatus">
+      <span class="us-dot" id="usDot"></span>
+      <div class="us-body">
+        <span class="us-text" id="usText">Kontrola aktuálnosti…</span>
+        <p class="us-detail" id="usDetail"></p>
       </div>
     </div>
 
@@ -1695,6 +1741,42 @@
       return day + ' ' + dd + '.' + mm + '.' + d.getFullYear();
     }
     document.getElementById('todayBadgeDate').textContent = formatCzFull(now);
+
+    (function checkUpdateStatus() {
+      var HORIZON_DAYS = 14;
+      var horizon = new Date(now.getTime() + HORIZON_DAYS * 86400000);
+      var stale = [];
+      cards.forEach(function(c) {
+        var d = new Date(c.getAttribute('data-date'));
+        if (d < now || d > horizon) return;
+        var when = c.getAttribute('data-when') || '';
+        if (when.indexOf('čas TBA') !== -1) {
+          stale.push({ teams: c.getAttribute('data-teams'), when: when.split(' · ')[0] });
+        }
+      });
+
+      function pluralCz(n, one, few, many) {
+        if (n === 1) return one;
+        if (n >= 2 && n <= 4) return few;
+        return many;
+      }
+
+      var box = document.getElementById('updateStatus');
+      var text = document.getElementById('usText');
+      var detail = document.getElementById('usDetail');
+
+      if (stale.length) {
+        box.classList.add('warn');
+        text.textContent = 'Doporučená aktualizace – ' + stale.length + ' ' +
+          pluralCz(stale.length, 'zápas', 'zápasy', 'zápasů') + ' do ' + HORIZON_DAYS +
+          ' dnů bez potvrzeného času';
+        detail.textContent = stale.map(function(s) { return s.when + ' ' + s.teams; }).join(' · ');
+      } else {
+        box.classList.add('ok');
+        text.textContent = 'Rozpis je aktuální';
+        detail.textContent = 'Všechny zápasy v příštích ' + HORIZON_DAYS + ' dnech mají potvrzený čas.';
+      }
+    })();
 
     function cardType(card) {
       var comp = card.getAttribute('data-competition');
