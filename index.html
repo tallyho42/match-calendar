@@ -23,6 +23,7 @@
     --rm-b: #D4AF37;
     --ars-a: #EF0107;
     --gold: #FFD84D;
+    --nat: #4FC3F7;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -108,7 +109,7 @@
 
   /* ============ TEAM SWITCHER ============ */
   .teams-nav {
-    display: grid; grid-template-columns: repeat(4, 1fr);
+    display: grid; grid-template-columns: repeat(5, 1fr);
     gap: 8px; margin: 18px 0 16px;
   }
   .team-tab {
@@ -237,6 +238,7 @@
   .t-rm::before { background: linear-gradient(180deg, var(--rm-a), var(--rm-b)); }
   .t-ars::before { background: var(--ars-a); }
   .t-shared::before { background: var(--gold); }
+  .t-nat::before { background: var(--nat); }
   .show-team-accent .match-card::before { opacity: 1; }
 
   .mc-teams { display: flex; flex-direction: column; gap: 9px; min-width: 0; flex: 1; justify-content: center; }
@@ -285,6 +287,7 @@
   .comp-friendly { background: rgba(165,0,68,0.18); color: #FF7BA3; border: 1px solid rgba(165,0,68,0.45); }
   .comp-draw { background: rgba(255,216,77,0.10); color: var(--gold); border: 1px dashed rgba(255,216,77,0.5); }
   .comp-chl { background: rgba(255,216,77,0.14); color: var(--gold); border: 1px solid rgba(255,216,77,0.45); }
+  .comp-nations { background: rgba(79,195,247,0.14); color: var(--nat); border: 1px solid rgba(79,195,247,0.4); }
 
   .match-card.next-card { border-color: var(--lime); background: var(--lime-soft); box-shadow: 0 0 28px rgba(200,241,53,0.12); }
   .match-card.today-card { outline: 2px solid var(--gold); outline-offset: -2px; }
@@ -414,6 +417,7 @@
       <button class="team-tab active" data-team="fcb"><span class="tt-icon"><img class="tt-logo" src="img/fcb.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><svg style="display:none" viewBox="0 0 40 48"><use href="#badge-fcb"/></svg></span>Barça</button>
       <button class="team-tab" data-team="rm"><span class="tt-icon"><img class="tt-logo" src="img/rm.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><svg style="display:none" viewBox="0 0 40 48"><use href="#badge-rm"/></svg></span>Real</button>
       <button class="team-tab" data-team="ars"><span class="tt-icon"><img class="tt-logo" src="img/ars.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><svg style="display:none" viewBox="0 0 40 48"><use href="#badge-ars"/></svg></span>Arsenal</button>
+      <button class="team-tab" data-team="nat"><span class="tt-icon"><svg viewBox="0 0 24 24" width="30" height="36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v18"></path><path d="M5 4h13l-3 4 3 4H5"></path></svg></span>Národní</button>
     </nav>
   </header>
 
@@ -652,6 +656,60 @@
           <span class="comp-chip comp-laliga">La Liga</span>
         </div>
       </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-09-25T20:45:00" data-teams="Turecko – Francie" data-when="Pá 25.09.2026 · 20:45" data-comp-label="Liga národů" data-home="Turecko" data-away="Francie" data-home-key="TUR" data-away-key="FRA">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/tur.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">TUR</span></span><span class="name">Turecko</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/fra.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">FRA</span></span><span class="name tracked">Francie</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">Pá</span>
+          <span class="mc-date">25.09</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-09-26T20:45:00" data-teams="Česko – Chorvatsko" data-when="So 26.09.2026 · 20:45" data-comp-label="Liga národů" data-home="Česko" data-away="Chorvatsko" data-home-key="CZE" data-away-key="CRO">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/cze.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">CZE</span></span><span class="name tracked">Česko</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/cro.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">CRO</span></span><span class="name">Chorvatsko</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">So</span>
+          <span class="mc-date">26.09</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-09-26T20:45:00" data-teams="Anglie – Španělsko" data-when="So 26.09.2026 · 20:45" data-comp-label="Liga národů" data-home="Anglie" data-away="Španělsko" data-home-key="ENG" data-away-key="SPA">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/eng.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">ENG</span></span><span class="name">Anglie</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/spa.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">SPA</span></span><span class="name tracked">Španělsko</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">So</span>
+          <span class="mc-date">26.09</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-09-28T20:45:00" data-teams="Belgie – Francie" data-when="Po 28.09.2026 · 20:45" data-comp-label="Liga národů" data-home="Belgie" data-away="Francie" data-home-key="BEL" data-away-key="FRA">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/bel.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">BEL</span></span><span class="name">Belgie</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/fra.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">FRA</span></span><span class="name tracked">Francie</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">Po</span>
+          <span class="mc-date">28.09</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-09-29T20:45:00" data-teams="Česko – Anglie" data-when="Út 29.09.2026 · 20:45" data-comp-label="Liga národů" data-home="Česko" data-away="Anglie" data-home-key="CZE" data-away-key="ENG">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/cze.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">CZE</span></span><span class="name tracked">Česko</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/eng.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">ENG</span></span><span class="name">Anglie</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">Út</span>
+          <span class="mc-date">29.09</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-09-29T20:45:00" data-teams="Španělsko – Chorvatsko" data-when="Út 29.09.2026 · 20:45" data-comp-label="Liga národů" data-home="Španělsko" data-away="Chorvatsko" data-home-key="SPA" data-away-key="CRO">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/spa.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">SPA</span></span><span class="name tracked">Španělsko</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/cro.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">CRO</span></span><span class="name">Chorvatsko</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">Út</span>
+          <span class="mc-date">29.09</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
     </section>
     <section class="month-group" data-month="2026-10">
       <div class="month-header"><span>Říjen 2026</span></div>
@@ -779,6 +837,51 @@
           <span class="mc-date">25.10</span>
           <span class="mc-time">21:00</span>
           <span class="comp-chip comp-laliga">La Liga</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-10-02T20:45:00" data-teams="Francie – Itálie" data-when="Pá 02.10.2026 · 20:45" data-comp-label="Liga národů" data-home="Francie" data-away="Itálie" data-home-key="FRA" data-away-key="ITA">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/fra.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">FRA</span></span><span class="name tracked">Francie</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/ita.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">ITA</span></span><span class="name">Itálie</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">Pá</span>
+          <span class="mc-date">02.10</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-10-03T20:45:00" data-teams="Španělsko – Česko" data-when="So 03.10.2026 · 20:45" data-comp-label="Liga národů" data-home="Španělsko" data-away="Česko" data-home-key="SPA" data-away-key="CZE">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/spa.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">SPA</span></span><span class="name tracked">Španělsko</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/cze.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">CZE</span></span><span class="name tracked">Česko</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">So</span>
+          <span class="mc-date">03.10</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-10-05T20:45:00" data-teams="Francie – Belgie" data-when="Po 05.10.2026 · 20:45" data-comp-label="Liga národů" data-home="Francie" data-away="Belgie" data-home-key="FRA" data-away-key="BEL">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/fra.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">FRA</span></span><span class="name tracked">Francie</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/bel.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">BEL</span></span><span class="name">Belgie</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">Po</span>
+          <span class="mc-date">05.10</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-10-06T20:45:00" data-teams="Anglie – Česko" data-when="Út 06.10.2026 · 20:45" data-comp-label="Liga národů" data-home="Anglie" data-away="Česko" data-home-key="ENG" data-away-key="CZE">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/eng.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">ENG</span></span><span class="name">Anglie</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/cze.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">CZE</span></span><span class="name tracked">Česko</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">Út</span>
+          <span class="mc-date">06.10</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
+        </div>
+      </article>
+      <article class="match-card t-nat" data-team="nat" data-competition="nations" data-date="2026-10-06T20:45:00" data-teams="Chorvatsko – Španělsko" data-when="Út 06.10.2026 · 20:45" data-comp-label="Liga národů" data-home="Chorvatsko" data-away="Španělsko" data-home-key="CRO" data-away-key="SPA">
+        <div class="mc-teams"><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/cro.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">CRO</span></span><span class="name">Chorvatsko</span><span class="side">dom</span></div><div class="mc-team"><span class="badge-wrap"><img class="team-logo" src="img/spa.png" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><span class="chip-badge" style="display:none" aria-hidden="true">SPA</span></span><span class="name tracked">Španělsko</span><span class="side">ven</span></div></div>
+        <div class="mc-meta">
+          <span class="mc-day">Út</span>
+          <span class="mc-date">06.10</span>
+          <span class="mc-time">20:45</span>
+          <span class="comp-chip comp-nations">Liga národů</span>
         </div>
       </article>
     </section>
@@ -1784,8 +1887,9 @@
       return comp;
     }
     function cardMatchesTeam(card, team) {
-      if (team === 'all') return true;
-      return card.getAttribute('data-team').split(',').indexOf(team) !== -1;
+      var teams = card.getAttribute('data-team').split(',');
+      if (team === 'all') return teams.indexOf('nat') === -1;
+      return teams.indexOf(team) !== -1;
     }
 
     function badgeHTML(key) {
