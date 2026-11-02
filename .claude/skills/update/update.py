@@ -42,11 +42,11 @@ def setdt(a, iso, tba=False):
     day = DAYS[dt.weekday()]
     shown = '--:--' if tba else dt.strftime('%H:%M')
     when = '%s %s · %s' % (day, dt.strftime('%d.%m.%Y'), 'čas TBA' if tba else shown)
-    a = re.sub(r'data-date="[^"]+"', 'data-date="%s"' % iso, a, 1)
-    a = re.sub(r'data-when="[^"]+"', 'data-when="%s"' % when, a, 1)
-    a = re.sub(r'<span class="mc-day">[^<]*</span>', '<span class="mc-day">%s</span>' % day, a, 1)
-    a = re.sub(r'<span class="mc-date">[^<]*</span>', '<span class="mc-date">%s</span>' % dt.strftime('%d.%m'), a, 1)
-    a = re.sub(r'<span class="mc-time">[^<]*</span>', '<span class="mc-time">%s</span>' % shown, a, 1)
+    a = re.sub(r'data-date="[^"]+"', 'data-date="%s"' % iso, a, count=1)
+    a = re.sub(r'data-when="[^"]+"', 'data-when="%s"' % when, a, count=1)
+    a = re.sub(r'<span class="mc-day">[^<]*</span>', '<span class="mc-day">%s</span>' % day, a, count=1)
+    a = re.sub(r'<span class="mc-date">[^<]*</span>', '<span class="mc-date">%s</span>' % dt.strftime('%d.%m'), a, count=1)
+    a = re.sub(r'<span class="mc-time">[^<]*</span>', '<span class="mc-time">%s</span>' % shown, a, count=1)
     return a
 
 
@@ -85,9 +85,9 @@ for ym in sorted(groups):
 d = d[:start] + out + d[end:]
 
 stamp = now.strftime('%Y-%m-%dT%H:%M:00')
-d = re.sub(r'data-updated="[^"]+"', 'data-updated="%s"' % stamp, d, 1)
+d = re.sub(r'data-updated="[^"]+"', 'data-updated="%s"' % stamp, d, count=1)
 d = re.sub(r'<span>Aktualizováno [^<]*</span>',
-           '<span>Aktualizováno %s · %s</span>' % (now.strftime('%d.%m.%Y'), now.strftime('%H:%M')), d, 1)
+           '<span>Aktualizováno %s · %s</span>' % (now.strftime('%d.%m.%Y'), now.strftime('%H:%M')), d, count=1)
 
 assert d.count('<article') == d.count('</article>') == len(kept)
 assert d.count('<section') == d.count('</section>')
